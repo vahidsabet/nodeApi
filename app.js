@@ -28,10 +28,13 @@ app.use((error, req, res, next) => {
 		message: error.message || 'خطای نامشخص',
 	});
 });
-const uri = 'mongodb://localhost:27017/placesDB';
+const uri = 'mongodb://localhost:27017/placesDB?replicaSet=rs0';
 
 mongoose
-.connect(uri)
+.connect(uri,{   useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    retryWrites: false})
 .then(()=>{
     app.listen(5000);
 })

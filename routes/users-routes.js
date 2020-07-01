@@ -11,12 +11,12 @@ router.get('/', usersController.getUsers);
 router.post('/signup',[
     check('userName').not().isEmpty(),
     check('email').normalizeEmail().isEmail(),
-    check('pass').isLength({min:6})
+    check('password').isLength({min:6})
 ], usersController.signup);
 
 router.post('/login',[
     check('email').not().isEmpty(),
-    check('pass').isLength({min:6})
+    check('password').isLength({min:6})
 ], usersController.login);
 
 //export
